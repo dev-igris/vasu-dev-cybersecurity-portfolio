@@ -155,7 +155,13 @@ export const introSlides = [
 
 export type SectionId = 'about' | 'journey' | 'originals' | 'picks' | 'skills' | 'moments' | 'story';
 export type ProfileId = 'dev' | 'recruiter' | 'security';
-export const viewerProfiles = [
+export const viewerProfiles: {
+  id: ProfileId;
+  name: string;
+  blurb: string;
+  color: string;
+  order: SectionId[];
+}[] = [
   { id: 'dev', name: 'Dev', blurb: 'The complete cybersecurity portfolio', color: '#39ff88', order: ['about', 'journey', 'originals', 'picks', 'skills', 'moments', 'story'] as SectionId[] },
   { id: 'recruiter', name: 'Recruiter', blurb: 'Education, skills and resume first', color: '#9cffc2', order: ['story', 'about', 'skills', 'originals', 'journey', 'moments', 'picks'] as SectionId[] },
   { id: 'security', name: 'Security', blurb: 'Tools, labs and learning journey first', color: '#46e3a8', order: ['originals', 'skills', 'journey', 'about', 'moments', 'picks', 'story'] as SectionId[] },

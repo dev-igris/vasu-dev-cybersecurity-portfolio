@@ -63,7 +63,7 @@ export default function ProfileSelector({ onPick }: { onPick: (id: ProfileId) =>
             <button type="button" onClick={() => onPick(p.id)} data-cursor="play" className="group flex flex-col items-center gap-3 text-center">
               <span className="relative rounded-xl ring-2 ring-transparent transition duration-300 group-hover:scale-105 group-hover:ring-bone group-focus-visible:ring-bone">
                 <ProfileAvatar id={p.id} />
-                {p.id === 'Dev' && (
+                {p.id === 'dev' && (
                   <span className="absolute -right-2 -top-2 rounded-full bg-crimson px-2 py-0.5 text-[9px] font-bold tracking-[0.18em] text-white">MAIN</span>
                 )}
               </span>
