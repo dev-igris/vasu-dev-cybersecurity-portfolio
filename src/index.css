@@ -1,0 +1,166 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-ink: #050906;
+  --color-ink-2: #09120c;
+  --color-ink-3: #101b13;
+  --color-crimson: #16b854;
+  --color-crimson-2: #39ff88;
+  --color-bone: #effff4;
+  --color-mist: #a4b8aa;
+  --color-smoke: #64796a;
+  --font-display: 'Bebas Neue', 'Oswald', Impact, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --ease-cine: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  color-scheme: dark;
+  --gutter: clamp(16px, 4vw, 56px);
+}
+
+html {
+  position: relative;
+  background: var(--color-ink);
+  -webkit-text-size-adjust: 100%;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  background: var(--color-ink);
+  color: var(--color-bone);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-crimson);
+  color: white;
+}
+
+.gutter {
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+/* Film grain — a single fixed layer, cheap and subtle */
+.grain {
+  position: fixed;
+  inset: -50%;
+  pointer-events: none;
+  z-index: 90;
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 1.2s steps(6) infinite;
+}
+@keyframes grain {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-3%, 2%); }
+  40% { transform: translate(2%, -3%); }
+  60% { transform: translate(-2%, -1%); }
+  80% { transform: translate(3%, 3%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Hide scrollbars on horizontal rails while keeping them scrollable */
+.rail {
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+.rail::-webkit-scrollbar {
+  display: none;
+}
+
+/* Custom cursor: hide the native one only when ours is active */
+.has-custom-cursor,
+.has-custom-cursor a,
+.has-custom-cursor button,
+.has-custom-cursor [role='button'] {
+  cursor: none;
+}
+
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(244, 241, 236, 0.28);
+}
+
+.glass {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+}
+
+.focus-ring:focus-visible,
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--color-crimson-2);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.light-streak {
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(57, 255, 136, 0.9), transparent);
+  filter: blur(0.4px);
+  animation: streak 7s var(--ease-cine) infinite;
+  opacity: 0;
+}
+@keyframes streak {
+  0% { transform: translateX(-40%) scaleX(0.4); opacity: 0; }
+  15% { opacity: 0.9; }
+  45% { transform: translateX(40%) scaleX(1); opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes shimmer {
+  to { background-position: 200% center; }
+}
+.shimmer-text {
+  background: linear-gradient(90deg, #f4f1ec 0%, #f4f1ec 40%, #39ff88 50%, #f4f1ec 60%, #f4f1ec 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain,
+  .light-streak,
+  .shimmer-text {
+    animation: none !important;
+  }
+  .light-streak {
+    display: none;
+  }
+}
+
+
+/* Cybersecurity atmosphere: restrained 3D depth, accessible motion, and neon circuitry. */
+body { background-image: radial-gradient(ellipse at 82% 12%, rgba(16,185,85,.09), transparent 34%), linear-gradient(rgba(57,255,136,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(57,255,136,.025) 1px, transparent 1px); background-size: auto, 44px 44px, 44px 44px; }
+.cyber-card { transform-style: preserve-3d; perspective: 900px; transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease, border-color .35s ease; }
+.cyber-card:hover, .cyber-card:focus-visible { transform: translateY(-5px) rotateX(1deg); box-shadow: 0 18px 44px rgba(0,0,0,.35), 0 0 26px rgba(57,255,136,.08); }
+.cyber-card::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(115deg, transparent 25%, rgba(57,255,136,.06) 45%, transparent 65%); transform: translateX(-120%); transition: transform .7s ease; }
+.cyber-card:hover::after { transform: translateX(120%); }
+.cert-art { transform: translateZ(18px); }
+@keyframes cyberPulse { 0%,100% { opacity:.35; filter:drop-shadow(0 0 2px #39ff88); } 50% { opacity:.9; filter:drop-shadow(0 0 8px #39ff88); } }
+.shimmer-text { text-shadow: 0 0 28px rgba(57,255,136,.18); }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; } }
